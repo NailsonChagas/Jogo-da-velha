@@ -1,5 +1,28 @@
 let jogador = 0;
+let jogador0_placar = 0;
+let jogador1_placar = 0;
 let tabuleiro = [[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]
+
+placar0 = document.getElementById("j0");
+placar1 = document.getElementById("j1");
+
+placar0.innerHTML = jogador0_placar;
+placar1.innerHTML = jogador1_placar;
+
+function atualizar(){
+    if(jogador == 0){
+        jogador0_placar += 1;
+    }
+    else{
+        jogador1_placar += 1;
+    }
+
+    placar0 = document.getElementById("j0");
+    placar1 = document.getElementById("j1");
+
+    placar0.innerHTML = jogador0_placar;
+    placar1.innerHTML = jogador1_placar;
+}
 
 function colocar_simbolo(x,y,jogador){
     if(jogador == 0){
@@ -24,13 +47,18 @@ function casa_clicada(x,y){
         colocar_simbolo(x,y,jogador)
         
         if(verificar_vitoria() == true){
-            alert("Jogador " + jogador + " venceu a partida")
-            document.location.reload();
+            alert("Jogador " + jogador + " venceu a partida");
+            //document.location.reload();
+
+            atualizar();
+
+            reiniciar_jogo();
         }
         else{
             if(verificar_velha() == true){
                 alert("Velha")
-                document.location.reload();
+                //document.location.reload();
+                reiniciar_jogo();
             }
         }
 
@@ -106,4 +134,8 @@ function verificar_velha(){
         }
     }
     return true;
+}
+
+function reiniciar_jogo(){
+    //
 }
